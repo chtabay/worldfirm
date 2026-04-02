@@ -169,31 +169,81 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { color: var(--text-primary); }
 .nav-links a:hover::after { width: 100%; }
 
-/* Language toggle */
+/* Language selector */
 
-.lang-toggle {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+.lang-select {
+    position: relative;
     margin-left: 32px;
 }
 
-.lang-btn {
+.lang-current {
+    background: none;
+    border: 1px solid var(--border);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 2px;
+    transition: color 0.3s, border-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lang-current::after {
+    content: '';
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    transition: transform 0.3s;
+}
+
+.lang-select.open .lang-current::after { transform: rotate(180deg); }
+.lang-current:hover { color: var(--text-primary); border-color: var(--border-hover); }
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 4px 0;
+    min-width: 56px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.25s, visibility 0.25s, transform 0.25s var(--ease-out);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.lang-select.open .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: block;
+    width: 100%;
     background: none;
     border: none;
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
     cursor: pointer;
-    padding: 4px 6px;
-    transition: color 0.3s;
+    padding: 7px 16px;
+    text-align: left;
+    transition: color 0.2s, background 0.2s;
 }
 
-.lang-btn.active { color: var(--text-primary); }
-.lang-btn:hover { color: var(--text-secondary); }
-.lang-sep { color: var(--text-muted); font-size: 11px; user-select: none; }
+.lang-option:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+.lang-option.active { color: var(--accent); }
 
 .nav-burger {
     display: none;
