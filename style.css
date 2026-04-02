@@ -169,6 +169,32 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { color: var(--text-primary); }
 .nav-links a:hover::after { width: 100%; }
 
+/* Language toggle */
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 32px;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: color 0.3s;
+}
+
+.lang-btn.active { color: var(--text-primary); }
+.lang-btn:hover { color: var(--text-secondary); }
+.lang-sep { color: var(--text-muted); font-size: 11px; user-select: none; }
+
 .nav-burger {
     display: none;
     background: none;
